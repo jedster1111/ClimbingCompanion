@@ -22,24 +22,24 @@
 
 <div ng-app="myApp" ng-controller="myCtrl" style="margin-left:20px">
     <div>
-      <p>My first expression:  {[{ firstName + " " + lastName }]} </p> 
-        <input type="text" ng-model="age" name="age" />
+        <form>
+        <p>My first expression:  {[{ firstName + " " + lastName }]} </p> 
+        <input type="number" ng-model="age" name="age" placeholder="Enter Age" min="1" max="120" style="width:150px;" class="form-control" />
         <p> Age: {[{ age }]} </p>
+        </form>
     </div>
     <div class="page-container">
-        <ul ng-repeat="todo in todos track by $index">
-            <li>
+        <ul class="list-group">
+            <li ng-repeat="todo in todos track by $index" class="list-group-item">
                 <span> {[{ todo }]} </span>
                 <button class="bt bt-achieve" ng-click="done(todo)">Done</button>
             </li>
         </ul>
     </div>
     <div>
-        <ul>
-            <li>
-                <input type="text" class="txt" style="width:210px" placeholder="New Todo, press enter to add!" ng-model="newTodo" ng-keyup="add($event)" />
-            </li>
-        </ul>
+
+    <input type="text" class="form-control" style="width:220px" placeholder="New Todo, press enter to add!" ng-model="newTodo" ng-keyup="add($event)" />
+
     </div>
 </div>
 {% endblock %}
