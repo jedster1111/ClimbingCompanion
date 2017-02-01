@@ -30,6 +30,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="angulartest\admin.py" />
+    <Compile Include="angulartest\apps.py" />
+    <Compile Include="angulartest\migrations\__init__.py" />
+    <Compile Include="angulartest\models.py" />
+    <Compile Include="angulartest\tests.py" />
+    <Compile Include="angulartest\urls.py" />
+    <Compile Include="angulartest\views.py" />
+    <Compile Include="angulartest\__init__.py" />
     <Compile Include="ClimbingCompanion\settings_secret.py" />
     <Compile Include="ClimbingCompanion\settings_secret_template.py" />
     <Compile Include="logbook\admin.py" />
@@ -47,14 +55,27 @@
     <Compile Include="ClimbingCompanion\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="logbook\templates\index.html" />
+    <Content Include="angulartest\static\angularTest\js\myApp.js" />
+    <Content Include="angulartest\static\angularTest\js\myCtrl.js" />
+    <Content Include="angulartest\templates\angularTest\angularTest.html" />
+    <Content Include="logbook\templates\logbook\index.html" />
     <Content Include="requirements.txt" />
+    <Content Include="templates\base.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="angulartest\" />
+    <Folder Include="angulartest\migrations\" />
+    <Folder Include="angulartest\static\" />
+    <Folder Include="angulartest\static\angularTest\js\" />
+    <Folder Include="angulartest\static\angularTest\" />
+    <Folder Include="angulartest\templates\" />
+    <Folder Include="angulartest\templates\angularTest\" />
     <Folder Include="ClimbingCompanion\" />
     <Folder Include="logbook\" />
     <Folder Include="logbook\migrations\" />
     <Folder Include="logbook\templates\" />
+    <Folder Include="logbook\templates\logbook\" />
+    <Folder Include="templates\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="..\env\">

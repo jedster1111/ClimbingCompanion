@@ -1,0 +1,45 @@
+﻿{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block title %} Angular Test {% endblock %}
+
+{% block scripts %} 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{% static "angularTest/js/myApp.js" %}"></script>
+<script src="{% static "angularTest/js/myCtrl.js" %}"></script>
+
+
+{% endblock %}
+
+{% block body %}
+
+<div ng-app="myApp" ng-controller="myCtrl" style="margin-left:20px">
+    <div>
+      <p>My first expression:  {[{ firstName + " " + lastName }]} </p> 
+        <input type="text" ng-model="age" name="age" />
+        <p> Age: {[{ age }]} </p>
+    </div>
+    <div class="page-container">
+        <ul ng-repeat="todo in todos track by $index">
+            <li>
+                <span> {[{ todo }]} </span>
+                <button class="bt bt-achieve" ng-click="done(todo)">Done</button>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <ul class="add-todo">
+            <li>
+                <input type="text" class="txt" placeholder="New Todo" ng-model="newTodo" ng-keyup="add($event)" />
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
