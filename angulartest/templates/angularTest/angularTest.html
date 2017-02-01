@@ -1,0 +1,28 @@
+﻿{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block title %} Angular Test {% endblock %}
+
+{% block scripts %} 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{% static "angularTest/js/myApp.js" %}"></script>
+<script src="{% static "angularTest/js/myCtrl.js" %}"></script>
+
+
+{% endblock %}
+
+{% block body %}
+
+{% verbatim %}
+<div ng-app="myApp" ng-controller="myCtrl">
+    
+  <p>My first expression:  {{ firstName + " " + lastName }} </p> 
+    <input type="text" ng-model="age" name="age" />
+    <p> Age: {{ age }}</p>
+</div>
+{% endverbatim %}
+
+{% endblock %}

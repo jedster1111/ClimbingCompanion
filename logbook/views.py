@@ -6,4 +6,4 @@ from .models import Coder
 def index(request):
     coder_list = Coder.objects.all()
     context = {'coder_list':coder_list,}
-    return render(request,'index.html', context)
+    return render(request,'logbook/index.html', context)
