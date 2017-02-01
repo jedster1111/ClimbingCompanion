@@ -1,6 +1,7 @@
 /ClimbingCompanion/settings_secret.py
 .vs
 *.sln
+*.pyproj
 
 .installed.cfg
 bin
