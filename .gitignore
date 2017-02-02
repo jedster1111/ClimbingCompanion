@@ -2,7 +2,7 @@
 .vs
 *.sln
 *.pyproj
-*/migrations
+
 
 .installed.cfg
 bin
