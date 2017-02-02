@@ -3,8 +3,8 @@ from logbook import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-   url(r'^$', views.climb_list),
-   url(r'^(?P<pk>[0-9]+)/$', views.climb_detail),
+   url(r'^$', views.ClimbList.as_view()),
+   url(r'^(?P<pk>[0-9]+)/$', views.ClimbDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
