@@ -1,0 +1,25 @@
+﻿{% extends "base.html" %}
+{% load static %}
+
+{% block title %} PigLatin {% endblock %}
+
+{% block scripts %}
+<script src="{% static "pigLatin/js/pigLatin.js" %}"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block body %}
+
+
+<div style="float:left; margin:30px;">
+    <form>
+        Text here: <textarea class="pigLatinInput" cols="50" rows="8" id="pigLatinInput"></textarea>
+        <input type="button" value="PigLatin!!!" id="translate" />
+        <textarea readonly id="pigLatinOutput" cols="50" rows="8">Hello</textarea>
+    </form>
+</div>
+
+
+{% endblock %}

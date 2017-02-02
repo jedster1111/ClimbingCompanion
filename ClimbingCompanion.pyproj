@@ -44,6 +44,9 @@
     <Compile Include="logbook\apps.py" />
     <Compile Include="logbook\migrations\__init__.py" />
     <Compile Include="logbook\models.py" />
+    <Compile Include="logbook\permissions.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="logbook\serializers.py">
       <SubType>Code</SubType>
     </Compile>
@@ -56,12 +59,30 @@
     <Compile Include="ClimbingCompanion\settings.py" />
     <Compile Include="ClimbingCompanion\urls.py" />
     <Compile Include="ClimbingCompanion\wsgi.py" />
+    <Compile Include="PigLatin\admin.py" />
+    <Compile Include="PigLatin\apps.py" />
+    <Compile Include="PigLatin\migrations\__init__.py" />
+    <Compile Include="PigLatin\models.py" />
+    <Compile Include="PigLatin\tests.py" />
+    <Compile Include="PigLatin\urls.py" />
+    <Compile Include="PigLatin\views.py" />
+    <Compile Include="PigLatin\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="angulartest\static\angularTest\js\myApp.js" />
     <Content Include="angulartest\static\angularTest\js\myCtrl.js" />
     <Content Include="angulartest\templates\angularTest\angularTest.html" />
     <Content Include="logbook\templates\logbook\index.html" />
+    <Content Include="PigLatin\migrations\__pycache__\__init__.cpython-36.pyc" />
+    <Content Include="PigLatin\static\pigLatin\css\pigLatin.css" />
+    <Content Include="PigLatin\static\pigLatin\js\pigLatin.js" />
+    <Content Include="PigLatin\templates\index.html" />
+    <Content Include="PigLatin\templates\pigLatin\pigLatin.html" />
+    <Content Include="PigLatin\__pycache__\admin.cpython-36.pyc" />
+    <Content Include="PigLatin\__pycache__\models.cpython-36.pyc" />
+    <Content Include="PigLatin\__pycache__\urls.cpython-36.pyc" />
+    <Content Include="PigLatin\__pycache__\views.cpython-36.pyc" />
+    <Content Include="PigLatin\__pycache__\__init__.cpython-36.pyc" />
     <Content Include="requirements.txt" />
     <Content Include="templates\base.html" />
   </ItemGroup>
@@ -78,6 +99,16 @@
     <Folder Include="logbook\migrations\" />
     <Folder Include="logbook\templates\" />
     <Folder Include="logbook\templates\logbook\" />
+    <Folder Include="PigLatin\" />
+    <Folder Include="PigLatin\migrations\" />
+    <Folder Include="PigLatin\migrations\__pycache__\" />
+    <Folder Include="PigLatin\static\" />
+    <Folder Include="PigLatin\static\pigLatin\css\" />
+    <Folder Include="PigLatin\static\pigLatin\js\" />
+    <Folder Include="PigLatin\static\pigLatin\" />
+    <Folder Include="PigLatin\templates\" />
+    <Folder Include="PigLatin\templates\pigLatin\" />
+    <Folder Include="PigLatin\__pycache__\" />
     <Folder Include="templates\" />
   </ItemGroup>
   <ItemGroup>

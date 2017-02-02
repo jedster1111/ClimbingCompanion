@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'logbook',
     'angulartest',
+    'PigLatin',
 ]
 
 MIDDLEWARE_CLASSES = [
