@@ -1,11 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.http import Http404
-from django.views.decorators.csrf import csrf_exempt
 
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework import mixins
+from rest_framework import generics
 
 # class based view
 from rest_framework.views import APIView
@@ -13,67 +9,32 @@ from rest_framework.views import APIView
 from .models import Coder, Climb
 from logbook.serializers import ClimbSerializer
 
-#class JSONResponse(HttpResponse):
-#
-#   def __init__(self, data, **kwargs):
-#       content = JSONRenderer().render(data)
-#       kwargs['content_type'] = 'application/json'
-#       super(JSONResponse, self).__init__(content, **kwargs)
+class ClimbList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView,):
+    queryset = Climb.objects.all()
+    serializer_class = ClimbSerializer
 
-#@api_view(['GET','POST'])
-#def climb_list(request, format=None):
-    #list all climbs or create a new climb
-#
-#    if request.method == 'GET':
-#        climbs = Climb.objects.all()
-#        serializer = ClimbSerializer(climbs, many=True)
-#        return Response(serializer.data)
-#
-#    elif request.method == 'POST':
-#        serializer = ClimbSerializer(data = request.data)
-#        if serializer.is_valid():
-#            serializer.save()
-#            return Response(serializer.data, status=status.HTTP_201_CREATED)
-#        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def get(self,request,*args,**kwargs):
+        return self.list(request,*args,**kwargs)
+    
+    def post(self,request,*args,**kwargs):
+        return self.create(request,*args,**kwargs)
 
-class ClimbList(APIView):
-    def get(self, request, format = None):
-        climbs = Climb.objects.all()
-        serializer = ClimbSerializer(climbs, many = True)
-        return Response(serializer.data)
+class ClimbDetail(mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
+                    generics.GenericAPIView):
+    queryset = Climb.objects.all()
+    serializer_class = ClimbSerializer
 
-    def post(self,request,format = None):
-        serializer = ClimbSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
-class ClimbDetail(APIView):
-    def get_object(request, pk):
-        try:
-            return Climb.objects.get(pk=pk)
-        except Climb.DoesNotExist:
-            raise Http404
-
-        def get(self, request, pk, format = None):
-            serializer = ClimbSerializer(climb)
-            return Response(serializer.data)
-
-        def put(self,request,pk,format=None):
-            climb = self.get_object(pk)
-            serializer = ClimbSerializer(climb, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-
-        def delete(self,request,pk,format = None):
-            climb = self.object_get(pk)
-            climb.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)  
 
 
 def index(request):
