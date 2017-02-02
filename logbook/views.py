@@ -1,57 +1,56 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from .models import Coder, Climb
 from logbook.serializers import ClimbSerializer
 
-class JSONResponse(HttpResponse):
+#class JSONResponse(HttpResponse):
+#
+#   def __init__(self, data, **kwargs):
+#       content = JSONRenderer().render(data)
+#       kwargs['content_type'] = 'application/json'
+#       super(JSONResponse, self).__init__(content, **kwargs)
 
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
+@api_view(['GET','POST'])
+def climb_list(request, format=None):
+    #list all climbs or create a new climb
 
-@csrf_exempt
-def climb_list(request):
-    # List all climbs, or make a new one
     if request.method == 'GET':
         climbs = Climb.objects.all()
         serializer = ClimbSerializer(climbs, many=True)
-        return JSONResponse(serializer.data)
+        return Response(serializer.data)
 
     elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = ClimbSerializer(data=data)
+        serializer = ClimbSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
-            return JSONResponse(serializer.data, status=201)
-        return JSONResponse(serializer.errors, status=401)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@csrf_exempt
-def climb_detail(request, pk):
+@api_view(['GET','POST','DELETE'])
+def climb_detail(request, pk, format=None):
     try:
         climb = Climb.objects.get(pk=pk)
     except Climb.DoesNotExist:
-        return HttpResponse(status=404)
+        return Response(status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
         serializer = ClimbSerializer(climb)
-        return JSONResponse(serializer.data)
+        return Response(serializer.data)
 
     elif request.method == 'PUT':
-        data = JSONParser().pasrse(request)
-        serializer = ClimbSerializer(climb, data=data)
+        serializer = ClimbSerializer(climb, request.data)
         if serializer.is_valid():
             serializer.save()
-            return JSONResponse(serializer.data)
-        return JSONResponse(serializer.errors)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     elif request.method == 'DELETE':
         climb.delete()
-        return HttpResponse(status=204)
-
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 def index(request):
