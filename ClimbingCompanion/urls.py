@@ -19,6 +19,11 @@ urlpatterns = [
     url(r'^$', index, name='index'),
 ]
 
+urlpatterns += [
+    url(r'^api-login/', include('rest_framework.urls',
+                               namespace='rest_framework')),
+]
+
 
                           
 

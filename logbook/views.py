@@ -1,41 +1,34 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 
-from rest_framework import mixins
 from rest_framework import generics
-
-# class based view
-from rest_framework.views import APIView
+from rest_framework import permissions
+from logbook.serializers import *
 
 from .models import Coder, Climb
-from logbook.serializers import ClimbSerializer
 
-class ClimbList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView,):
+
+class ClimbList(generics.ListCreateAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = Climb.objects.all()
     serializer_class = ClimbSerializer
-
-    def get(self,request,*args,**kwargs):
-        return self.list(request,*args,**kwargs)
     
-    def post(self,request,*args,**kwargs):
-        return self.create(request,*args,**kwargs)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+                
 
-class ClimbDetail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
+class ClimbDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = Climb.objects.all()
     serializer_class = ClimbSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-
-
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 def index(request):
     coder_list = Coder.objects.all()
