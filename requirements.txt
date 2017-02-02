@@ -7,3 +7,7 @@ six==1.10.0
 djangorestframework==3.5.3
 olefile==0.44
 Pillow==4.0.0
+colorama==0.3.7
+httpie==0.9.9
+Pygments==2.2.0
+requests==2.13.0
