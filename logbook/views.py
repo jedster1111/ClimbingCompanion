@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework import permissions
 from logbook.serializers import *
+from logbook.permissions import IsOwnerOrReadOnly
 
 from .models import Coder, Climb
 
@@ -16,9 +17,8 @@ class ClimbList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
                 
-
 class ClimbDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
     queryset = Climb.objects.all()
     serializer_class = ClimbSerializer
 
