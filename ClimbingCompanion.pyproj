@@ -44,6 +44,9 @@
     <Compile Include="logbook\apps.py" />
     <Compile Include="logbook\migrations\__init__.py" />
     <Compile Include="logbook\models.py" />
+    <Compile Include="logbook\serializers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="logbook\urls.py" />
     <Compile Include="logbook\tests.py" />
     <Compile Include="logbook\views.py" />

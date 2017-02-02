@@ -24,10 +24,14 @@ class Climb(models.Model):
     colour = models.CharField(max_length=50)
     grade = models.CharField(max_length=6)
     centre = models.ForeignKey(Centre,related_name='climbs' , on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True, blank = True)
 
     def __str__(self):
         routeName = self.colour + " " + self.grade
         return routeName
+
+    class Meta:
+        ordering = ('-created',)
 
 
 
