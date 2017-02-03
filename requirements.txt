@@ -11,3 +11,6 @@ colorama==0.3.7
 httpie==0.9.9
 Pygments==2.2.0
 requests==2.13.0
+coreapi==2.1.1
+itypes==1.1.0
+uritemplate==3.0.0
