@@ -1,0 +1,7 @@
+﻿<ul class="list-group">
+    <li ng-repeat="climb in climbs" class="list-group-item">
+        <span>[[climb.colour + " " + climb.grade]]</span>
+        <button class="bt bt-achieve" ui-sref="viewMovie({id:climb.id})">View Details</button>
+    </li>
+</ul>
+<h1>hey this is climbs partial html template</h1>

@@ -1,20 +1,28 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %} Home {% endblock %}
 
 {% block body %}
 
-<h1>hello</h1>
+{% block scripts %} 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.1/angular-resource.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{% static "logbook/js/services.js" %}"></script>
+<script src="{% static "logbook/js/app.js" %}"></script>
+<script src="{% static "logbook/js/controllers.js" %}"></script>
+{% endblock %}
 
-    
-        {% if coder_list %}
-    <ul>
-        {% for coder in coder_list %}
-        <li>{{coder}}</li>
-        {% endfor %}
-        </ul>
-        {% else %}
-        <h1>You don't have any coders yet. Add some in the admin interface!</h1>
-        {% endif %}
+<div ng-app="logbookApp">
+    <h1>before</h1>
+    <div ui-view></div> <!--The view should load here, we'll see-->
+    <h1>after</h1>
+
+
+</div>
 
 {% endblock %}
