@@ -1,34 +1,25 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-
-from rest_framework import generics
 from rest_framework import permissions
+from rest_framework import viewsets
 from logbook.serializers import *
 from logbook.permissions import IsOwnerOrReadOnly
 
 from .models import Coder, Climb
 
-
-class ClimbList(generics.ListCreateAPIView):
+class ClimbViewSet(viewsets.ModelViewSet):
+    queryset = Climb.objects.all()
+    serializer_class = ClimbSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    queryset = Climb.objects.all()
-    serializer_class = ClimbSerializer
-    
+
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-                
-class ClimbDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
-    queryset = Climb.objects.all()
-    serializer_class = ClimbSerializer
+        serializer.save(owner = self.request.user)
 
-class UserList(generics.ListAPIView):
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
 def index(request):
     coder_list = Coder.objects.all()

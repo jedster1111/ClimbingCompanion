@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 class ClimbSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-    #centre = serializers.ReadOnlyField(source='
 
     class Meta:
         model = Climb
