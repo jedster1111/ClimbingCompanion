@@ -8,12 +8,14 @@ from logbook.permissions import IsOwnerOrReadOnly
 from .models import Coder, Climb, Centre
 
 class ClimbViewSet(viewsets.ModelViewSet):
-    queryset = Climb.objects.all()
     serializer_class = ClimbSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = Climb.objects.all()
+    filter_fields = ('centre',)
 
     def perform_create(self, serializer):
         serializer.save(owner = self.request.user)
+
 
 class CentreViewSet(viewsets.ModelViewSet):
     queryset = Centre.objects.all()

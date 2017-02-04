@@ -14,3 +14,7 @@ requests==2.13.0
 coreapi==2.1.1
 itypes==1.1.0
 uritemplate==3.0.0
+click==6.7
+coreapi-cli==1.0.6
+django-crispy-forms==1.6.1
+django-filter==1.0.1
