@@ -17,10 +17,13 @@ from rest_framework.schemas import get_schema_view
 schema_view = get_schema_view(title='Pastebin API')
 
 router = DefaultRouter()
+# /logbook/centres/
+router.register(r'centres', views.CentreViewSet)
 # /logbook/climbs/
 router.register(r'climbs', views.ClimbViewSet)
 # /logbook/users/
 router.register(r'users', views.UserViewSet)
+
 
 urlpatterns = [
         url('^schema/$', schema_view),

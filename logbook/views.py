@@ -5,7 +5,7 @@ from rest_framework import viewsets
 from logbook.serializers import *
 from logbook.permissions import IsOwnerOrReadOnly
 
-from .models import Coder, Climb
+from .models import Coder, Climb, Centre
 
 class ClimbViewSet(viewsets.ModelViewSet):
     queryset = Climb.objects.all()
@@ -15,6 +15,10 @@ class ClimbViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(owner = self.request.user)
 
+class CentreViewSet(viewsets.ModelViewSet):
+    queryset = Centre.objects.all()
+    serializer_class = CentreSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()

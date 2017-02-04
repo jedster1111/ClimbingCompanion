@@ -7,18 +7,29 @@
 
 {% block scripts %} 
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="{% static "logbook/js/climbReader.js" %}"></script>
 {% endblock %}
 
-<div ng-app="logbookApp" ng-controller="climbReader">
+<div ng-app="logbookApp" ng-controller="logbookCtrl">
+    <div>
+        <div>Centres:</div>
+        <div ng-click="pickCentre(centre)" ng-repeat="centre in centres">[[centre.name + " (" + centre.nearest_city + ")"]]</div>
+        
+    </div>
+    <div>This is the selected centre: [[centre.name]]</div>
+        <div>This is the selected climbs: [[selectedClimbs]]</div>
     <ul>
-        <li ng-repeat="climb in climbs.data">[[climb.colour + " " + climb.grade]]</li>
+        <li>Climbs:</li>
+        <li ng-repeat="climb in climbs | climbFilter:selectedClimbs:'id'"> [[climb.colour]] [[climb.grade]]</li>
     </ul>
 
+    
 
+    <input type="text" class="form-control" style="width:220px" placeholder="Colour" ng-model="newClimbColour" ng-keyup="add($event)" />
+    <input type="text" class="form-control" style="width:220px" placeholder="Colour" ng-model="newClimbGrade" ng-keyup="add($event)" />
 </div>
 
 {% endblock %}
