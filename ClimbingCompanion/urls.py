@@ -6,6 +6,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 admin.autodiscover()
 from logbook.views import index
+from .views import *
 
 
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
     url(r'^logbook/', include('logbook.urls')),
     url(r'^piglatin/', include('PigLatin.urls')),
     url(r'^login/', include('login.urls')),
+    url(r'^newclimb/', newClimb, name='newClimb'),
     url(r'^$', index, name='index'),
 ]
 

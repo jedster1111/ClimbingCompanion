@@ -3,7 +3,7 @@
 
 {% block title %} Home {% endblock %}
 
-{% block body %}
+
 
 {% block scripts %} 
 <!-- Latest compiled and minified CSS -->
@@ -13,7 +13,11 @@
 <script src="{% static "logbook/js/climbReader.js" %}"></script>
 {% endblock %}
 
+{% block body %}
+
+
 <div ng-app="logbookApp" ng-controller="logbookCtrl">
+    <h1>Hello {{ user.username }}</h1>
     <div>
         <div>Centres:</div>
         <div ng-click="pickCentre(centre)" ng-repeat="centre in centres">[[centre.name + " (" + centre.nearest_city + ")"]]</div>
@@ -27,9 +31,19 @@
     </ul>
 
     
-
-    <input type="text" class="form-control" style="width:220px" placeholder="Colour" ng-model="newClimbColour" ng-keyup="add($event)" />
-    <input type="text" class="form-control" style="width:220px" placeholder="Colour" ng-model="newClimbGrade" ng-keyup="add($event)" />
+    <form>
+        {% csrf_token %}
+        <input type="text" class="form-control" style="width:220px" placeholder="Colour" ng-model="newClimb.colour"  />
+        <input type="text" class="form-control" style="width:220px" placeholder="Grade" ng-model="newClimb.grade"  />
+        <select ng-model="newClimb.centre">
+            <option ng-repeat="centre in centres" value="[[centre.id]]">[[centre.name]]</option>
+        </select>
+        <button class="btn btn-default" ng-click="saveNewClimb()">add climb</button>
+    </form>
+    [[newClimb]]
 </div>
+
+
+
 
 {% endblock %}

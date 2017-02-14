@@ -10,12 +10,16 @@
 {% endblock %}
 
 {% block body %}
-<form method="post">
+<form method="post" action="/logbook/climbs/">
     {% csrf_token %}
-    <input type="text" name="username" placeholder="Enter Username" />
-    <input type="password" name="password" />
+    <input type="text" name="colour" placeholder="Enter Colour" />
+    <input type="text" name="grade" placeholder="Enter Grade"/>
+    <select name="centre">
+        {% for centre in centre_list %}
+        <option value="{{centre.pk}}">{{centre.name}} ({{centre.nearest_city}})</option>
+        {% endfor %}
+    </select>
     <input type="submit" value="Submit" />
-    <input type="hidden" name="next" value="/" />
 </form>
 
 

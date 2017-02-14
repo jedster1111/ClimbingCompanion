@@ -34,18 +34,18 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # Add your apps here to enable them
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
     'rest_framework',
     'crispy_forms',
     'logbook',
     'angulartest',
     'PigLatin',
     'login',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE_CLASSES = [
