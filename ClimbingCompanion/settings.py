@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'logbook',
     'angulartest',
     'PigLatin',
+    'login',
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^angulartest/', include('angulartest.urls')),
     url(r'^logbook/', include('logbook.urls')),
     url(r'^piglatin/', include('PigLatin.urls')),
+    url(r'^login/', include('login.urls')),
     url(r'^$', index, name='index'),
 ]
 
