@@ -10,7 +10,9 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-animate.js"></script>
 <script src="{% static "logbook/js/climbReader.js" %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'logbook/css/animate.css' %}" />
 {% endblock %}
 
 {% block body %}
@@ -25,11 +27,12 @@
     </div>
     <div>This is the selected centre: [[centre.name]]</div>
         <div>This is the selected climbs: [[selectedClimbs]]</div>
-    <ul>
-        <li>Climbs:</li>
-        <li ng-repeat="climb in climbs"> [[climb.colour]] [[climb.grade]]</li>
-    </ul>
-
+    <div>
+        <h2>Climbs:</h2>
+        <ul class="list-group">
+            <li class="centreList list-group-item" ng-repeat="climb in climbs"> [[climb.colour]] [[climb.grade]]</li>
+        </ul>
+    </div>
     
     <form>
         {% csrf_token %}

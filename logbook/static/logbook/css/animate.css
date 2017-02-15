@@ -1,0 +1,26 @@
+﻿.centreList {
+}
+
+.centreList.ng-animate{
+    transition:none;
+}
+
+.centreList.ng-move,
+.centreList.ng-enter,
+.centreList.ng-leave {
+    -webkit-transition:all linear 0.2s;
+    transition:all linear 0.2s;
+}
+
+.centreList.ng-move,
+.centreList.ng-enter,
+.centreList.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.centreList.ng-move.ng-move-active,
+.centreList.ng-enter.ng-enter-active,
+.centreList.ng-leave {
+  opacity:1;
+}
+
