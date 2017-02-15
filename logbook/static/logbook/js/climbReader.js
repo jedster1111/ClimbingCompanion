@@ -10,11 +10,6 @@ app.config(function ($interpolateProvider, $httpProvider) {
 
 
 app.controller('logbookCtrl', function ($scope, $http, $timeout) {
-    /*
-    $http.get('http://127.0.0.1:8000/logbook/climbs/')
-        .then(function (response) {
-            $scope.climbs = response.data;
-        }); */
     $scope.climbs = {};
     $scope.newClimb = {};
 
@@ -22,6 +17,15 @@ app.controller('logbookCtrl', function ($scope, $http, $timeout) {
        .then(function (response) {
            $scope.centres = response.data;
        });
+    $scope.saveNewClimb = function () {
+        $http.post('/logbook/climbs/', $scope.newClimb)
+        .then(function (data) {
+            $scope.climbs.splice(0, 0, $scope.newClimb);
+        })
+        .catch(function (data) {
+            console.log(data);
+        });
+    };
        
     $scope.pickCentre = function (selected) {
         $scope.centre = selected;
@@ -29,12 +33,8 @@ app.controller('logbookCtrl', function ($scope, $http, $timeout) {
         $http.get('http://127.0.0.1:8000/logbook/climbs/?centre=' + $scope.centre.id)
             .then(function (response) {
                 $scope.climbs = response.data;
-
-                
+                $scope.newClimb.centre = $scope.centre.id;
             });
     };
-    $scope.saveNewClimb = function () {
-        $http.post('/logbook/climbs/', $scope.newClimb);
-        
-    };
+    
 });

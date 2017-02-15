@@ -30,17 +30,14 @@
     <div>
         <h2>Climbs:</h2>
         <ul class="list-group">
-            <li class="centreList list-group-item" ng-repeat="climb in climbs"> [[climb.colour]] [[climb.grade]]</li>
+            <li class="centreList list-group-item" ng-repeat="climb in climbs track by $index"> [[climb.colour]] [[climb.grade]]</li>
         </ul>
     </div>
     
     <form>
         {% csrf_token %}
         <input type="text" class="form-control" style="width:220px" placeholder="Colour" ng-model="newClimb.colour"  />
-        <input type="text" class="form-control" style="width:220px" placeholder="Grade" ng-model="newClimb.grade"  />
-        <select ng-model="newClimb.centre">
-            <option ng-repeat="centre in centres" value="[[centre.id]]">[[centre.name]]</option>
-        </select>
+        <input type="text" class="form-control" style="width:220px" placeholder="Grade" ng-model="newClimb.grade"  />        
         <button class="btn btn-default" ng-click="saveNewClimb()">add climb</button>
     </form>
     [[newClimb]]
