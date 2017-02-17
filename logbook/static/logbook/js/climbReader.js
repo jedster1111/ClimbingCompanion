@@ -20,7 +20,10 @@ app.controller('logbookCtrl', function ($scope, $http, $timeout) {
     $scope.saveNewClimb = function () {
         $http.post('/logbook/climbs/', $scope.newClimb)
         .then(function (data) {
-            $scope.climbs.splice(0, 0, $scope.newClimb);
+            $http.get('http://127.0.0.1:8000/logbook/climbs/?centre=' + $scope.centre.id)
+            .then(function (response) {
+                $scope.climbs = response.data;
+            });
         })
         .catch(function (data) {
             console.log(data);

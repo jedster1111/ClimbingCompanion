@@ -8,8 +8,8 @@
 .centreList.ng-move,
 .centreList.ng-enter,
 .centreList.ng-leave {
-    -webkit-transition:all linear 1s;
-    transition:all linear 1s;
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
 }
 
 .centreList.ng-move,
